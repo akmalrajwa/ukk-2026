@@ -1,29 +1,33 @@
 @extends ('layouts.app')
 
 @section ('content')
+
 <div class="container">
     <h1>Kategori</h1>
+    <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
     <table class="table table-bordered table-strinped">
         <thead>
             <tr>
-                <th>No</th>
+                <th>ID</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
+            @php $no=1; @endphp
             @foreach ($data as $kategori)
             <tr>
-                    <td>{{ $kategori->id_kategori }}</td>
+                    <td>{{ $no++ }}</td>
                     <td>{{ $kategori->keterangan }}</td>
                     <td>
-                        <a href="" class=" btn btn-success btn-sm">Edit</a>
+                        <a href="{{ route('admin.kategori.edit', ['id_kategori' => $kategori->id_kategori]) }}" class="btn btn-success btn-sm">Edit</a>
                         <a href="" class=" btn btn-danger btn-sm">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
         </tbody>
     </table>
+
     {!! $data->links() !!}
 </div>
 @endsection
