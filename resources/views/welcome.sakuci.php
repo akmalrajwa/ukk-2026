@@ -9,17 +9,16 @@
         <span class="badge rounded-pill badge-brand px-3 py-2 mb-3">Sakuci v1.0.0</span>
 
         <h1 class="display-5 fw-bold mb-3">
-            Kerangka PHP rasa Laravel,<br class="d-none d-md-inline">
-            <span class="text-brand">tanpa Composer</span>
+            Aplikasi Peminjaman Alat<br class="d-none d-md-inline">
+            <span class="text-brand">SMK SANGKURIANG 1 CIMAHI</span>
         </h1>
 
         <p class="lead text-secondary mx-auto mb-4" style="max-width: 620px;">
-            Route, Model, View, dan Controller dalam satu paket ringan.
-            Cukup PHP OOP murni -- salin foldernya, jalankan, selesai.
+            Sistem sederhana untuk memudahkan proses peminjaman alat.
         </p>
 
         <div class="d-flex flex-wrap gap-2 justify-content-center">
-            <a class="btn btn-brand btn-lg px-4" href="#langkah">Mulai dari sini</a>
+            <a class="btn btn-brand btn-lg px-4" href="{{ route('login')}}">Login</a>
             <a class="btn btn-outline-brand btn-lg px-4" href="https://github.com/indrabsus/sakuci-framework" target="_blank">GitHub</a>
         </div>
 
@@ -27,6 +26,8 @@
             Panduan langkah demi langkah ada di berkas
             <code class="inline">TUTORIAL.md</code>
         </p>
+
+        
     </section>
 
     {{-- Instalasi --}}
@@ -34,32 +35,13 @@
         <div class="col-lg-12">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
-                    <h2 class="h5 fw-semibold mb-3">📥 Instalasi</h2>
+                    <h2 class="h5 fw-semibold mb-3"> Tentang Aplikasi</h2>
 
-                    <p class="text-secondary mb-3">Pilih salah satu cara untuk memulai:</p>
-
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <h3 class="h6 fw-medium mb-2">Dari GitHub</h3>
-                            <pre class="code"><span class="cmt"># Clone repository</span>
-git clone https://github.com/indrabsus/sakuci-framework.git
-cd sakuci-framework
-
-<span class="cmt"># Siapkan .env</span>
-cp .env.example .env
-
-<span class="cmt"># Jalankan server</span>
-php sakuci serve</pre>
+                    <p class="text-secondary mb-3">Aplikasi Peminjaman Alat merupakan sebuah sistem yang dibuat untuk membantu mengelola proses peminjaman dan pengembalian alat secara lebih mudah, cepat, dan teratur. Pengguna dapat melihat daftar alat yang tersedia, mengetahui informasi alat, melakukan peminjaman, mencatat pengembalian, serta melihat riwayat peminjaman melalui satu sistem.
+                    </p>
+                    <p class="text-secondary mb-3">Aplikasi ini bertujuan untuk mempermudah pengguna dalam mencari dan meminjam alat yang dibutuhkan serta membantu pengelola dalam mengatur data alat dan mencatat setiap transaksi peminjaman. Dengan adanya aplikasi ini, proses peminjaman dan pengembalian alat dapat dilakukan dengan lebih efektif, terorganisir, dan mengurangi kesalahan dalam pencatatan.
+                    </p>
                         </div>
-
-                        <div class="col-md-6">
-                            <h3 class="h6 fw-medium mb-2">Manual</h3>
-                            <ol class="mb-0 ps-4">
-                                <li>Download folder dari <a href="https://github.com/indrabsus/sakuci-framework" target="_blank">GitHub</a></li>
-                                <li>Ekstrak ke folder proyek</li>
-                                <li>Salin <code class="inline">.env.example</code> jadi <code class="inline">.env</code></li>
-                                <li>Jalankan <code class="inline">php sakuci serve</code></li>
-                                <li>Buka <code class="inline">http://127.0.0.1:8000</code></li>
                             </ol>
                         </div>
                     </div>
