@@ -192,7 +192,7 @@
                     <h3>Jam Operasional</h3>
                     <p class="mb-2">Layanan peminjaman dan pengembalian dilakukan pada jam sekolah.</p>
                     <ul>
-                        <li>Setiap hari sekolah, 07.30 – 15.30</li>
+                        <li>Setiap hari sekolah, 07.30 – 16:00</li>
                         <li>Pengembalian dilayani sampai jam operasional berakhir</li>
                     </ul>
                 </div>
