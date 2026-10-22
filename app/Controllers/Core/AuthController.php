@@ -4,6 +4,7 @@ namespace App\Controllers\Core;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\LogAktifitas;
 use Sakuci\Controller;
 use Sakuci\Http\Request;
 use Sakuci\Session;
@@ -40,6 +41,14 @@ class AuthController extends Controller
             'role'     => 'required|in:' . implode(',', $allowed),
         ]);
 
+        // min:6 di validator dianggap nilai angka kalau isinya angka (666 lolos).
+        // Jadi panjang karakter dicek manual di sini.
+        if (strlen((string) $data['password']) < 6) {
+            return back()
+                ->withErrors(['password' => 'Password minimal 6 karakter.'])
+                ->withInput();
+        }
+
         $user = User::create([
             'username' => $data['username'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
@@ -47,6 +56,12 @@ class AuthController extends Controller
         ]);
 
         Session::put('user_id', $user->id);
+
+        // MENCATAT LOG: Pendaftaran Akun Baru
+        LogAktifitas::create([
+            'id_user'   => $user->id,
+            'aktifitas' => 'Pengguna baru ' . $user->username . ' mendaftarkan akun dengan role ' . $user->role . '.'
+        ]);
 
         return redirect('/dashboard')->with('success', 'Pendaftaran berhasil. Selamat datang, ' . $user->username . '.');
     }
@@ -68,15 +83,32 @@ class AuthController extends Controller
 
         Session::put('user_id', $user->id);
 
+      
+        LogAktifitas::create([
+            'id_user'   => $user->id,
+            'aktifitas' => 'Pengguna ' . $user->username . ' (' . $user->role . ') berhasil masuk ke sistem.'
+        ]);
+
         return redirect($user->role === 'admin' ? '/admin' : '/dashboard')
             ->with('success', 'Selamat datang, ' . $user->username . '.');
     }
 
     public function logout()
     {
+        // MENCATAT LOG: Keluar dari Sistem (diambil sebelum session dihapus)
+        $userId = Session::get('user_id');
+        if ($userId) {
+            $user = User::find($userId);
+            if ($user) {
+                LogAktifitas::create([
+                    'id_user'   => $user->id,
+                    'aktifitas' => 'Pengguna ' . $user->username . ' (' . $user->role . ') keluar dari sistem (logout).'
+                ]);
+            }
+        }
+
         Session::forget('user_id');
 
         return redirect('/login')->with('success', 'Berhasil logout.');
     }
 }
-

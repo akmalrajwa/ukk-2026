@@ -1,12 +1,17 @@
+-- create_peminjaman_table
+
 CREATE TABLE IF NOT EXISTS `peminjaman` (
-   id_peminjaman INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-   id_user INT UNSIGNED NOT NULL,
-   id_alat INT UNSIGNED NOT NULL,
-   jumlah INT NOT NULL DEFAULT 1,
-   tanggal_pinjam DATE NOT NULL,
-   tanggal_kembali DATE DEFAULT NULL,
-   status ENUM('Pending', 'Disetujui', 'Ditolak', 'Dipinjam', 'Dikembalikan') DEFAULT 'Pending',
-   denda INT DEFAULT 0,
-   created_at DATETIME NULL,
-   updated_at DATETIME NULL
-   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_peminjaman` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` int unsigned NOT NULL,
+  `id_alat` int NOT NULL,
+  `jumlah` int NOT NULL,
+  `tanggal_pinjam` date NOT NULL,
+  `tanggal_kembali` date DEFAULT NULL,
+  status ENUM('Pending','Disetujui','Ditolak','Dikembalikan') DEFAULT 'Pending',
+  `denda` int DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_peminjaman`),
+  KEY `fk_peminjam_id_user_c3fc75` (`id_user`),
+  CONSTRAINT `fk_peminjam_id_user_c3fc75` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

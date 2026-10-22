@@ -13,6 +13,7 @@
     </div>
 
     <div class="row g-4">
+        <!-- Form Tambah User Baru -->
         <div class="col-md-5">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
@@ -50,6 +51,7 @@
             </div>
         </div>
 
+        <!-- Tabel Daftar User -->
         <div class="col-md-7">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
@@ -61,18 +63,96 @@
                                 <th>#</th>
                                 <th>Username</th>
                                 <th>Role</th>
+                                <th class="text-center">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = 1; @endphp
                             @forelse ($users as $item)
+                                @php $userId = $item->id ?? $item->id_user; @endphp
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $no }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td><code class="inline">{{ $item->role }}</code></td>
+                                    <td class="text-center">
+                                        @if ($no === 1)
+                                            <!-- Pengecekan Khusus Akun Utama / Master Admin -->
+                                            <span class="badge bg-secondary-subtle text-secondary rounded-pill border px-3 py-1.5 small">
+                                                <i class="bi bi-lock-fill me-1"></i> Akun Utama
+                                            </span>
+                                        @else
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <!-- Tombol Edit (Membuka Modal Pop-up) -->
+                                                <button type="button" class="btn btn-sm btn-outline-primary px-3 py-1 rounded-3" 
+                                                        data-bs-toggle="modal" data-bs-target="#editUserModal{{ $userId }}">
+                                                    <i class="bi bi-pencil-square me-1"></i> Edit
+                                                </button>
+
+                                                <!-- Tombol Hapus -->
+                                                <form action="{{ route('admin.users.destroy', ['id' => $userId]) }}" 
+                                                      method="POST" class="d-inline" 
+                                                      onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger px-3 py-1 rounded-3">
+                                                        <i class="bi bi-trash me-1"></i> Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                            <!-- MODAL POPUP EDIT USER -->
+                                            <div class="modal fade text-start" id="editUserModal{{ $userId }}" tabindex="-1" aria-labelledby="editUserModalLabel{{ $userId }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content bg-dark text-white border-secondary">
+                                                        <div class="modal-header border-secondary">
+                                                            <h5 class="modal-title h6" id="editUserModalLabel{{ $userId }}">
+                                                                Edit User: <span class="fw-bold">{{ $item->username }}</span>
+                                                            </h5>
+                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form method="POST" action="{{ route('admin.users.update', ['id' => $userId]) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label text-white-50 small" for="username_{{ $userId }}">Username</label>
+                                                                    <input type="text" id="username_{{ $userId }}" name="username" value="{{ old('username', $item->username) }}" class="form-control bg-dark text-white border-secondary" required>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label class="form-label text-white-50 small" for="password_{{ $userId }}">
+                                                                        Password Baru <span class="text-white-50">(Kosongkan jika tidak ingin diubah)</span>
+                                                                    </label>
+                                                                    <input type="password" id="password_{{ $userId }}" name="password" class="form-control bg-dark text-white border-secondary" placeholder="••••••">
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label class="form-label text-white-50 small" for="role_{{ $userId }}">Role</label>
+                                                                    <select id="role_{{ $userId }}" name="role" class="form-select bg-dark text-white border-secondary">
+                                                                        @foreach ($roles as $roleOption)
+                                                                            <option value="{{ $roleOption->name }}" @if (old('role', $item->role) === $roleOption->name) selected @endif>
+                                                                                {{ $roleOption->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer border-secondary">
+                                                                <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm px-3">Simpan Perubahan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END MODAL -->
+                                        @endif
+                                    </td>
                                 </tr>
+                                @php $no++; @endphp
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-secondary">Belum ada user.</td>
+                                    <td colspan="4" class="text-secondary text-center py-3">Belum ada user.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -83,4 +163,3 @@
     </div>
 
 @endsection
-

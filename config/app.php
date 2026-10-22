@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'name'     => env('APP_NAME', 'Sakuci'),
+    'name'     => env('APP_NAME', 'Alatsekolah.id'),
 
     // Saat true, halaman error menampilkan detail lengkap. Matikan di produksi.
     'debug'    => env('APP_DEBUG', true),
@@ -32,8 +32,7 @@ return [
 
     'middleware' => [
         'peminjam' => App\Middleware\PeminjamOnly::class,
-        'user' => App\Middleware\UserOnly::class,
-        'siswa' => App\Middleware\SiswaOnly::class,
+        'petugas' => App\Middleware\PetugasOnly::class,
         'auth'  => App\Middleware\Authenticate::class,
         'guest' => App\Middleware\RedirectIfAuthenticated::class,
         'admin' => App\Middleware\AdminOnly::class,

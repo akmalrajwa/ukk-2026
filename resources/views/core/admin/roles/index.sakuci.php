@@ -80,7 +80,7 @@
                                                             <input type="checkbox" name="can_register" value="1" class="form-check-input" id="reg{{ $role->id }}" {{ $role->can_register ? 'checked' : '' }}>
                                                             <label class="form-check-label small" for="reg{{ $role->id }}">Daftar</label>
                                                         </div>
-                                                        <button type="submit" class="btn btn-sm btn-outline-brand">Simpan</button>
+                                                        <button type="submit" class="btn btn-sm btn-outline-primary">Simpan</button>
                                                     </form>
                                                     <form method="POST" action="{{ route('admin.roles.destroy', ['role' => $role->id]) }}" onsubmit="return confirm('Hapus role &quot;{{ $role->name }}&quot;?')">
                                                         @csrf
