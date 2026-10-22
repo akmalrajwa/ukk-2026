@@ -175,7 +175,7 @@
             <p class="mh-sub mb-4">Aturan singkat agar alat tetap awet dan semua orang kebagian jadwal latihan.</p>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                 <div class="col"><div class="mh-rule"><div class="n">01</div><h3>Akun Terdaftar</h3><p>Siswa dan staf wajib punya akun aktif di sistem sebelum mengajukan pinjaman.</p></div></div>
-                <div class="col"><div class="mh-rule"><div class="n">02</div><h3>Cek Fisik &amp; Fungsi</h3><p>Periksa senar, kabel, dan kelengkapan bersama petugas sebelum alat dibawa keluar ruangan.</p></div></div>
+                <div class="col"><div class="mh-rule"><div class="n">02</div><h3>Cek Fisik &amp; Fungsi</h3><p>Periksa senar, kabel, dan kelengkapan lainnya sebelum alat dibawa keluar ruangan.</p></div></div>
                 <div class="col"><div class="mh-rule"><div class="n">03</div><h3>Kembali Tepat Waktu</h3><p>Patuhi batas tanggal dan jam yang disepakati supaya pengguna lain tidak terganggu.</p></div></div>
                 <div class="col"><div class="mh-rule"><div class="n">04</div><h3>Tanggung Jawab Alat</h3><p>Kerusakan atau kehilangan selama masa pinjam menjadi tanggung jawab peminjam.</p></div></div>
                 <div class="col"><div class="mh-rule"><div class="n">05</div><h3>Gunakan Sewajarnya</h3><p>Alat dipakai untuk latihan, tugas seni, atau kegiatan sekolah, bukan untuk dipindahtangankan.</p></div></div>
