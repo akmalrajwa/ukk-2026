@@ -21,8 +21,8 @@
                 <div class="au-demo">
                     <div class="au-demo-title">Akun Demo</div>
                     <div class="au-demo-row"><span>admin</span><code class="inline">rahasia123</code></div>
-                    <div class="au-demo-row"><span>petugas</span><code class="inline">12345</code></div>
-                    <div class="au-demo-row"><span>peminjam</span><code class="inline">12345</code></div>
+                    <div class="au-demo-row"><span>petugas</span><code class="inline">123456</code></div>
+                    <div class="au-demo-row"><span>peminjam</span><code class="inline">123456</code></div>
                 </div>
 
                 <form method="POST" action="{{ route('login.attempt') }}">
